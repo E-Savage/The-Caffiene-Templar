@@ -1,6 +1,6 @@
 
 function love.load()
-    anim8 = require 'libraries/amim8'
+    anim8 = require 'libraries/anim8'
 
     love.graphics.setDefaultFilter("nearest", "nearest")
     player = {}
