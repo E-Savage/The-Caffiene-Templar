@@ -1,11 +1,20 @@
 
 function love.load()
+    anim8 = require 'libraries/amim8'
+
     love.graphics.setDefaultFilter("nearest", "nearest")
     player = {}
     player.x = 400
     player.y = 200
     player.speed = 2
-    player.sprite = love.graphics.newImage("gamesprites/coffeeKnight/CoffeeKnight.png") 
+    player.sprite = love.graphics.newImage("gamesprites/coffeeKnight/CoffeeKnight.png")
+    player.spriteSheet = love.graphics.newImage("gamesprites/coffeeKnight/CoffeeKnightWalkV1.png")
+    player.grid = anim8.newGrid(16, 16, player.spriteSheet:getWidth(),  player.spriteSheet:getHeight())
+
+    player.animations = {}
+
+    -- Create other animations this is the first test to see what the animation looks like
+    player.animations.down = anim8.newAnimation( player.grid('1-4', 1), 0.2)
 end
 
 function love.update(dt)
