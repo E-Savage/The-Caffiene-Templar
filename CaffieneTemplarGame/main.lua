@@ -14,7 +14,7 @@ function love.load()
     player.animations = {}
 
     -- Create other animations this is the first test to see what the animation looks like
-    player.animations.down = anim8.newAnimation( player.grid('1-4', 1), 0.2)
+    player.animations.down = anim8.newAnimation( player.grid('1-3', 1), 0.2)
 end
 
 function love.update(dt)
