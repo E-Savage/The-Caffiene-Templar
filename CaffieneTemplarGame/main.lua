@@ -15,25 +15,43 @@ function love.load()
 
     -- Create other animations this is the first test to see what the animation looks like
     player.animations.down = anim8.newAnimation( player.grid('1-3', 1), 0.2)
+
+    -- variable to control the current animation
+    player.anim = player.animations.down
+
+
 end
 
 function love.update(dt)
+    local isMoving = false
+
     if love.keyboard.isDown("right") then
         player.x = player.x + player.speed
+        isMoving = true
     end
     
     if love.keyboard.isDown("left") then
         player.x = player.x - player.speed
+        isMoving = true
     end
 
     if love.keyboard.isDown("up") then
         player.y = player.y - player.speed
+        isMoving = true
     end
 
     if love.keyboard.isDown("down") then
         player.y = player.y + player.speed
+        player.anim = player.animations.down
+        isMoving = true
     end
 
+    if isMoving == false then
+        player.anim:gotoFrame(1)
+    end
+
+
+    player.anim:update(dt)
 end
 
 function love.draw()
@@ -45,8 +63,7 @@ function love.draw()
     color = { red, green, blue}
     love.graphics.setBackgroundColor( color)
 
-    love.graphics.draw(player.sprite, player.x, player.y, 0, 8, 8)
-
+    player.animations.down:draw(player.spriteSheet, player.x, player.y, nil, 10)
 end
 
 
